@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev":"nodemon src/index.js"
+    "dev": "nodemon src/index.js"
   },
   "keywords": [
     "java",
@@ -15,6 +15,7 @@
   "author": "jay rana",
   "license": "ISC",
   "dependencies": {
+    "mkdir": "^0.0.2",
     "touch": "^3.1.1"
   },
   "devDependencies": {
