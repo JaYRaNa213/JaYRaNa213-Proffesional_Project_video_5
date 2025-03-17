@@ -1,18 +1,23 @@
 import express from "express";
 import mongoose from "mongoose";
 
+import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
+
+
+
 const videoSchema = new mongoose.Schema({
 
   videofile:{
-    type : String,
+    type : String, // cloudnary url
     required:true,
   },
   thumbnail:{
     type :String,
+    required: true
     
   },
   owner:{
-    type :mongoose.Types.ObjectId,
+    type :mongoose.Schema.Types.ObjectId,
     ref:"User"
     
   },
@@ -26,10 +31,12 @@ const videoSchema = new mongoose.Schema({
   },
   views:{
     type :number,
+    default:0
     
   },
   isPublished:{
     type :boolean,
+    default:true
   },
   description:{
     type :Sting,
@@ -40,4 +47,6 @@ const videoSchema = new mongoose.Schema({
 
 },{timestamps:true})
 
+
+videoSchema.plugin(mongooseAggregatePaginate)
 export const Video = mongoose.model("Video",videoSchema)
