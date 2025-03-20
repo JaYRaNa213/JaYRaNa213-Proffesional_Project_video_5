@@ -2,7 +2,7 @@
 
 
 
-const asyscHandler = (requestHandler) =>{
+const asyncHandler = (requestHandler) =>{
   return (req,res,next) => {
     Promise.resolve(requestHandler(req,res,next)).catch((err) => next(err))
   }
@@ -11,7 +11,11 @@ const asyscHandler = (requestHandler) =>{
 
 
 
-export {asyncHandler}
+export default asyncHandler;
+
+// for simple 
+// export { asyncHandler};
+
 
 //for understand higher order function
   
