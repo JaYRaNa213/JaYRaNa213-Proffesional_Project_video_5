@@ -2,7 +2,7 @@ import {ApiError} from "../utils/ApiError.js";
 import {asyncHandler} from "../utils/asyncHandler.js";
 import {uploadOnCloudinary} from "../utils/cloudinary.js";
 import {User} from "../models/user.model.js"
-
+import { ApiResponse } from "../utils/ApiResponse.js";
 const registerUser = asyncHandler(async (req,res) =>{
 
   // get user details from frontend
@@ -68,6 +68,10 @@ throw new ApiError(400,"Avatar file is required")
   if(!createdUser){
     throw new ApiError(500,"SOMETHING WENT WRONG WHILE REGISTERING THE USER")
   }
+
+  return res.status(201).json(
+    new ApiResponse(200,createdUser,"User registerd successfully")
+  )
 
 
     
