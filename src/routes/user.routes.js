@@ -1,35 +1,16 @@
-// import { Router } from "express";
-// import { registerUser } from "../controllers/user.controller.js";
+// file name : userRouter.js
 
-// import {upload} from "../middlewares/multer.middleware.js"
-// const userRouter = Router()
-
-// userRouter.route("/register").post(
-//   upload.fields([
-//     {
-//       name:"avatar",
-//       maxCount:1
-//     },
-//     {
-//       name:"coverImages",
-//       maxcount:3
-//     }
-
-//   ]),
-  
-//   registerUser)
-// // userRouter.route("/login").post(loginUser)
-// // userRouter.route("/login").post(loginUser)
-// export default userRouter
-
-// userRouter.js
 import { Router } from "express";
 import { registerUser, } from "../controllers/user.controller.js";
+import { loginUser,logoutUser } from "../controllers/user.controller.js";
+import { verifyJWT } from "../middlewares/auth.middleware.js";
 import {upload} from "../middlewares/multer.middleware.js"
 
 const router = Router()
 
 // Route to handle user registration with file uploads
+
+
 router.route('/register').post(
   upload.fields([
     {
@@ -44,14 +25,14 @@ router.route('/register').post(
   registerUser // Call the registerUser controller after files are uploaded
 )
 
+
+
+// Route to handle user login
+
 router.route('/login').post(loginUser)
 
+// secured routes for logout
 
-// secured routes
-
-router.route('/logout').post(verifyToken,logoutUser)
-
-// Optionally, other routes like login could go here:
-// userRouter.route("/login").post(loginUser);
+router.route('/logout').post(verifyJWT,logoutUser)
 
 export default router;
