@@ -24,11 +24,7 @@
 
 // userRouter.js
 import { Router } from "express";
-import { 
-
-    registerUser, 
-
-} from "../controllers/user.controller.js";
+import { registerUser, } from "../controllers/user.controller.js";
 import {upload} from "../middlewares/multer.middleware.js"
 
 const router = Router()
@@ -47,6 +43,13 @@ router.route('/register').post(
   ]),
   registerUser // Call the registerUser controller after files are uploaded
 )
+
+router.route('/login').post(loginUser)
+
+
+// secured routes
+
+router.route('/logout').post(verifyToken,logoutUser)
 
 // Optionally, other routes like login could go here:
 // userRouter.route("/login").post(loginUser);
