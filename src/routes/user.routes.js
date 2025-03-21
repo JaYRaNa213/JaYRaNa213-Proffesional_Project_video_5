@@ -23,14 +23,18 @@
 // export default userRouter
 
 // userRouter.js
-import { Router } from 'express';
-import { registerUser } from '../controllers/user.controller.js';
-import { upload } from '../middlewares/multer.middleware.js';
+import { Router } from "express";
+import { 
 
-const userRouter = Router();
+    registerUser, 
+
+} from "../controllers/user.controller.js";
+import {upload} from "../middlewares/multer.middleware.js"
+
+const router = Router()
 
 // Route to handle user registration with file uploads
-userRouter.route('/register').post(
+router.route('/register').post(
   upload.fields([
     {
       name: 'avatar',
@@ -38,13 +42,13 @@ userRouter.route('/register').post(
     },
     {
       name: 'coverImages',
-      maxCount: 3,  // Limit to 3 files for 'coverImages'
+      maxCount: 1,  // Limit to 3 files for 'coverImages'
     },
   ]),
   registerUser // Call the registerUser controller after files are uploaded
-);
+)
 
 // Optionally, other routes like login could go here:
 // userRouter.route("/login").post(loginUser);
 
-export default userRouter;
+export default router;

@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema(
   username:
   {
     type : String,
-    required:true,
+    // required:true,
     unique:true,
     lowercase:true,
     trim:true,
@@ -19,26 +19,26 @@ const userSchema = new mongoose.Schema(
   email:
   {
     type :String,
-    required:true,
+    // required:true,
     unique:true,
     lowercase:true,
   },
   password:
   {
     type :String,
-    required:[true,"Password is required"]
+    // required:[true,"Password is required"]
   },
   fullname:
   {
     type :String,
-    required:true,
+    // required:true,
     index:true
   },
-  avatar:
-  {
-    type :String,  /// cloud url
-    required:true
-  },
+  // avatar:
+  // {
+  //   type :String,  /// cloud url
+    
+  // },
   coverImage:
   {
     type :String,
